@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar"
+         xml:lang="es-es" root="ROOT" mode="voice">
+  <rule id="ROOT" scope="public">
+    <one-of>
+      <item> mostrar </item>
+      <item> muéstrame </item>
+      <item> buscar </item>
+      <item> búscame </item>
+    </one-of>
+    <one-of>
+      <item>
+        <ruleref uri="#SEARCH_NEW_MAIL"/>
+        <tag>out.SEARCH="new"</tag>
+      </item>
+      <item>
+        <ruleref uri="#SEARCH_ALL_MAIL"/>
+        <tag>out.SEARCH="all"</tag>
+      </item>
+      <item>
+        <ruleref uri="#SEARCH_DAY_MAIL"/>
+        <tag>
+          out.SEARCH="day";
+          out.DATE=rules.SEARCH_DAY_MAIL.DATE;
+        </tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="SEARCH_NEW_MAIL">
+    <item repeat="0-1"> los </item>
+    <item repeat="0-1">
+      <one-of>
+        <item> correos </item>
+        <item> mensajes </item>
+      </one-of>
+    </item>
+    <one-of>
+      <item> nuevos </item>
+      <item> "no leídos" </item>
+      <item> "sin leer" </item>
+    </one-of>
+  </rule>
+
+  <rule id="SEARCH_ALL_MAIL">
+    <one-of>
+      <item> "todos los correos" </item>
+      <item> "todos" </item>
+      <item> "todo" </item>
+      <item> "todo el correo" </item>
+    </one-of>
+  </rule>
+
+  <rule id="SEARCH_DAY_MAIL">
+    <one-of>
+      <item> "el correo" </item>
+      <item> "los correos" </item>
+    </one-of>
+    <one-of>
+      <item> "de ayer" <tag>out.DATE="yesterday"</tag></item>
+      <item> "de hoy" <tag>out.DATE="today"</tag></item>
+      <!--
+      <item>
+	"del día"
+        <tag>out.DATE="26-Apr-1999";</tag>
+      </item>
+      <item>
+	<item>"del día"</item>
+        <item>
+          <ruleref uri="./date.php#DATE"/>
+          <tag>
+            out.DATE=rules.DATE.DAY + "-" + rules.DATE.MONTH + "-" + rules.DATE.YEAR;
+          </tag>
+        </item>
+      </item>-->
+    </one-of>
+  </rule>
+</grammar>
