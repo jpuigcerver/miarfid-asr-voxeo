@@ -25,6 +25,7 @@
         </tag>
       </item>
     </one-of>
+    <tag>out.ACTION="search";</tag>
   </rule>
 
   <rule id="SEARCH_NEW_MAIL">
@@ -59,20 +60,10 @@
     <one-of>
       <item> "de ayer" <tag>out.DATE="yesterday"</tag></item>
       <item> "de hoy" <tag>out.DATE="today"</tag></item>
-      <!--
-      <item>
-	"del día"
-        <tag>out.DATE="26-Apr-1999";</tag>
-      </item>
       <item>
 	<item>"del día"</item>
-        <item>
-          <ruleref uri="./date.php#DATE"/>
-          <tag>
-            out.DATE=rules.DATE.DAY + "-" + rules.DATE.MONTH + "-" + rules.DATE.YEAR;
-          </tag>
-        </item>
-      </item>-->
+        <ruleref uri="./date.php#DATE"/>
+      </item>
     </one-of>
   </rule>
 </grammar>

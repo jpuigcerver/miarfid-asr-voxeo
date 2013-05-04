@@ -4,9 +4,14 @@
   echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 ?>
 <grammar xmlns="http://www.w3.org/2001/06/grammar"
-         xml:lang="es-es" root="SHOW_MSG" mode="voice">
-
-  <rule id="SHOW_MSG" scope="public">
+         xml:lang="es-es" root="ROOT" mode="voice">
+  <rule id="ROOT" scope="public">
+    <one-of>
+      <item> mostrar </item>
+      <item> muéstrame </item>
+      <item> leer </item>
+      <item> léeme </item>
+    </one-of>
     <item repeat="0-1"> el </item>
     <one-of>
       <item> mensaje </item>
@@ -22,6 +27,6 @@ echo "<item> $i <tag>out.UID=$uid</tag></item>\n";
 }
 ?>
     </one-of>
+    <tag>out.ACTION="read";</tag>
   </rule>
-
 </grammar>
