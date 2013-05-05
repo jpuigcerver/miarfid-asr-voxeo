@@ -32,15 +32,14 @@
 <vxml version="2.1" xmlns="http://www.w3.org/2001/vxml" xml:lang="ca-es">
   <meta name="maintainer" content="joapuipe@upv.es" />
   <form id="MainForm">
-<?php
-if ($UNSEEN == 0) {
-  echo "
     <block>
-      <prompt>" . $message . "</prompt>
-    </block>
-";
-}
+      <prompt>
+<?php
+if($UNSEEN) { echo "Correu marcat com no llegit"; }
+else { echo $message; }
 ?>
+      </prompt>
+    </block>
     <field name="action">
       <grammar xmlns="http://www.w3.org/2001/06/grammar"
                xml:lang="ca-es" root="ROOT" mode="voice">
