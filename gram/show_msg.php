@@ -4,18 +4,19 @@
   echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 ?>
 <grammar xmlns="http://www.w3.org/2001/06/grammar"
-         xml:lang="es-es" root="ROOT" mode="voice">
+         xml:lang="ca-es" root="ROOT" mode="voice">
   <rule id="ROOT" scope="public">
     <one-of>
-      <item> mostrar </item>
-      <item> muéstrame </item>
-      <item> leer </item>
-      <item> léeme </item>
+      <item> "mostrar" </item>
+      <item> "mostra'm" </item>
+      <item> "llegir" </item>
+      <item> "llegeix" </item>
+      <item> "llegeix-me" </item>
     </one-of>
     <item repeat="0-1"> el </item>
     <one-of>
-      <item> mensaje </item>
-      <item> correo </item>
+      <item> missatge </item>
+      <item> correu </item>
     </one-of>
     <item repeat="0-1"> número </item>
     <one-of>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar"
+         xml:lang="ca-es" root="ROOT" mode="voice">
+  <rule id="ROOT" scope="public">
+    <one-of>
+      <item>
+        <ruleref uri="#DELETE"/>
+        <tag>out.ACTION="delete";</tag>
+      </item>
+      <item>
+        <ruleref uri="#MARK_UNSEEN"/>
+        <tag>out.ACTION="mark_unseen";</tag>
+      </item>
+      <item>
+        <ruleref uri="#READ_AGAIN"/>
+        <tag>out.ACTION="read_again";</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="DELETE">
+    <item repeat="0-1"> Emilia </item>
+    <one-of>
+      <item> "esborra" </item>
+      <item> "elimina" </item>
+      <item> "esborra'l" </item>
+      <item> "elimina'l" </item>
+    </one-of>
+  </rule>
+
+  <rule id="MARK_UNSEEN">
+    <item repeat="0-1"> Emilia </item>
+    <one-of>
+      <item> "marca com no" </item>
+      <item> "marca'l com no" </item>
+      <item> "marca-lo com no" </item>
+      <item> "no" </item>
+    </one-of>
+    <one-of>
+      <item> "llegit" </item>
+      <item> "vist" </item>
+    </one-of>
+  </rule>
+
+  <rule id="READ_AGAIN">
+    <item repeat="0-1"> "Emilia" </item>
+    <item repeat="0-1"> "vull" </item>
+    <one-of>
+      <item> "torna a llegir" </item>
+      <item> "torna'l a llegir" </item>
+      <item> "escoltar" </item>
+      <item> "tornar a escoltar" </item>
+      <item> "tornar a escoltar-lo" </item>
+    </one-of>
+    <item repeat="0-1">
+      <one-of>
+        <item> el missatge </item>
+        <item> el correu </item>
+      </one-of>
+    </item>
+  </rule>
+</grammar>

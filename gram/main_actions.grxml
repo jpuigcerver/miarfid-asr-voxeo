@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://www.w3.org/2001/06/grammar"
-         xml:lang="es-es" root="ROOT" mode="voice">
+         xml:lang="ca-es" root="ROOT" mode="voice">
   <rule id="ROOT" scope="public">
+    <item repeat="0-1"></item>
     <one-of>
       <item> mostrar </item>
-      <item> muéstrame </item>
+      <item> mostra'm </item>
       <item> buscar </item>
-      <item> búscame </item>
+      <item> busca'm </item>
     </one-of>
     <one-of>
       <item>
@@ -29,39 +30,40 @@
   </rule>
 
   <rule id="SEARCH_NEW_MAIL">
-    <item repeat="0-1"> los </item>
+    <item repeat="0-1"> els </item>
     <item repeat="0-1">
       <one-of>
-        <item> correos </item>
-        <item> mensajes </item>
+        <item> correus </item>
+        <item> missatges </item>
       </one-of>
     </item>
     <one-of>
-      <item> nuevos </item>
-      <item> "no leídos" </item>
-      <item> "sin leer" </item>
+      <item> nous </item>
+      <item> "no llegits" </item>
+      <item> "sense llegir" </item>
     </one-of>
   </rule>
 
   <rule id="SEARCH_ALL_MAIL">
     <one-of>
-      <item> "todos los correos" </item>
-      <item> "todos" </item>
-      <item> "todo" </item>
-      <item> "todo el correo" </item>
+      <item> "tots" </item>
+      <item> "tot" </item>
+      <item> "tot el correu" </item>
+      <item> "tots els correus" </item>
+      <item> "tots els missatges" </item>
     </one-of>
   </rule>
 
   <rule id="SEARCH_DAY_MAIL">
     <one-of>
-      <item> "el correo" </item>
-      <item> "los correos" </item>
+      <item> "el correu" </item>
+      <item> "els correus" </item>
     </one-of>
     <one-of>
-      <item> "de ayer" <tag>out.DATE="yesterday"</tag></item>
-      <item> "de hoy" <tag>out.DATE="today"</tag></item>
+      <item> "d'ahir" <tag>out.DATE="yesterday"</tag></item>
+      <item> "d'avui" <tag>out.DATE="today"</tag></item>
       <item>
-	<item>"del día"</item>
+	<item>"del dia"</item>
         <ruleref uri="./date.php#DATE"/>
       </item>
     </one-of>

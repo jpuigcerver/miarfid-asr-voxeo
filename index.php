@@ -15,17 +15,17 @@
     case 'new':
       $mails = $imap->search_unseen_mails();
       if (!$mails) {
-        $message = "No tienes correos nuevos.\n";
+        $message = "No tens cap correu nou.\n";
       } else {
-        $message = "Tienes " . count($mails) . " correos nuevos.\n";
+        $message = "Tens " . count($mails) . " correus nous.\n";
       }
       break;
     case 'all':
       $mails = $imap->search_all_mails();
       if (!$mails) {
-        $message = "No tienes ningún correo.\n";
+        $message = "No tens cap correu a la safata d'entrada.\n";
       } else {
-        $message = "Tienes un total de " . count($mails) . " correos en tu bandeja de entrada.\n";
+        $message = "Tens un total de " . count($mails) . " correus a la teva safata d'entrada.\n";
       }
       break;
     case 'day':
@@ -42,9 +42,9 @@
       }
       $mails = $imap->search_date_mails($date);
       if (!$mails) {
-        $message = "No tienes correos del día " . $date . ".\n";
+        $message = "No tens correus del dia " . $date . ".\n";
       } else {
-        $message = "Tienes " . count($mails) . " correos del dia " . $date . ".\n";
+        $message = "Tens " . count($mails) . " correus del dia " . $date . ".\n";
       }
       break;
   }
@@ -64,7 +64,7 @@
     $mails_ow = $imap->fetch_seq_overview(substr($mseq, 0, -1));
     for ($c=0;$c < count($mails_ow); $c++) {
       $ci = $c + 1;
-      $from = htmlentities($mails_ow[$c]->from);
+      $from = htmlspecialchars($mails_ow[$c]->from, ENT_COMPAT, 'UTF-8');
       $subj = "";
       $elems = imap_mime_header_decode($mails_ow[$c]->subject);
       foreach($elems as $el) {
@@ -74,27 +74,27 @@
           $subj = $subj . iconv($el->charset, 'UTF-8', $el->text);
         }
       }
-      $message .= "Correo número " . $ci . " de: " . $from;
-      $message .= ", con asunto: " . $subj . "\n";
+      $message .= "Correu número " . $ci . " de: " . $from;
+      $message .= ", amb assumpte: " . $subj . "\n";
       $message .= "<break time=\"700\"/>\n";
     }
   }
   $imap->close();
 ?>
-<vxml version="2.1" xmlns="http://www.w3.org/2001/vxml" xml:lang="es-es">
+<vxml version="2.1" xmlns="http://www.w3.org/2001/vxml" xml:lang="ca-es">
   <meta name="maintainer" content="joapuipe@upv.es" />
   <form id="MainForm">
     <block>
       <prompt>
         <?php
-          if (is_null($prev)) { echo "Bienvenido!\n"; }
+          if (is_null($prev)) { echo "Benvingut!\n"; }
           echo $message;
         ?>
       </prompt>
     </block>
     <field name="action">
 <grammar xmlns="http://www.w3.org/2001/06/grammar"
-         xml:lang="es-es" root="ROOT" mode="voice">
+         xml:lang="ca-es" root="ROOT" mode="voice">
   <rule id="ROOT" scope="public">
     <one-of>
       <item><ruleref uri="./gram/basic_actions.grxml#ROOT"/></item>
@@ -114,7 +114,7 @@
           <clear namelist="action"/>
         </if>
         <if cond="lastresult$.interpretation.ACTION == 'exit'">
-          <prompt>Hasta pronto!</prompt>
+          <prompt>Fins prompte!</prompt>
         </if>
         <if cond="lastresult$.interpretation.ACTION == 'search'">
           <if cond="lastresult$.interpretation.SEARCH == 'new'">

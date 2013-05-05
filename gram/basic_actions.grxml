@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://www.w3.org/2001/06/grammar"
-         xml:lang="es-es" root="ROOT" mode="voice">
+         xml:lang="ca-es" root="ROOT" mode="voice">
   <rule id="ROOT" scope="public">
     <one-of>
       <item><ruleref uri="#STOP"/></item>
@@ -8,6 +8,7 @@
     </one-of>
   </rule>
   <rule id="STOP">
+    <item repeat="0-1"> Emilia </item>
     <one-of>
       <item> para </item>
       <item> parar </item>
@@ -17,9 +18,10 @@
   </rule>
   <rule id="EXIT">
     <one-of>
-      <item> salir </item>
-      <item> quiero salir </item>
-      <item> adios </item>
+      <item> eixir </item>
+      <item> sortir </item>
+      <item> adéu </item>
+      <item> "adéu Emilia" </item>
     </one-of>
     <tag>out.ACTION="exit";</tag>
   </rule>

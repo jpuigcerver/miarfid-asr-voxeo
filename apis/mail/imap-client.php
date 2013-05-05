@@ -7,9 +7,6 @@ class IMAPClient {
   private $host = '{imap.gmail.com:993/imap/ssl}INBOX';
   private $user = 'emilia.rah@gmail.com';
   private $pass = 'contrasenyadeemilia';
-  /*private $host = '{imap.puigcerver.me:143/imap/tls/novalidate-cert}INBOX';
-  private $user = 'emilia.rah@puigcerver.me';
-  private $pass = 'ux#rjm*3';*/
   public function open() {
     $this->imap = imap_open($this->host, $this->user, $this->pass);
     return $this->imap;
@@ -134,6 +131,17 @@ class IMAPClient {
     }
     return $result;
   }
+
+  public function delete($UID) {
+    if (!$this->imap and !$this->open()) return FALSE;
+    return imap_delete($this->imap, $UID, FT_UID);
+  }
+
+  public function mark_unseen($seq) {
+    if (!$this->imap and !$this->open()) return FALSE;
+    return imap_clearflag_full($this->imap, $seq, "\\Seen", ST_UID);
+  }
+
   public static function header_decode($head) {
     $elems = imap_mime_header_decode($head);
     $dec = '';
